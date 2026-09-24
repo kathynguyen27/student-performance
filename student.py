@@ -7,7 +7,8 @@ print("=================================")
 print("STUDENT PERFORMANCE")
 print("=================================")
 
-#collecting info
+#collecting info with inputs and int
+#dont forget the float is for any possible decimal answers
 name = input("What is your name?: ")
 grade = int(input("What grade are you in?: "))
 assignment_avg = float(input("What is your assignment average?: "))
@@ -17,14 +18,16 @@ attendance = float(input("What is your attendance percentage?: "))
 missing_assignments = int(input("How many missing assignments do you have?: "))
 
 #functions
+#line below doesn't do anything i just needed it to be defined for a bit
 overall_grade = 0
+#grade calculation using averages
 def calculate_grade(assignment_avg, quiz_avg, test_avg):
     return (assignment_avg*0.3) + (quiz_avg*0.3) + (test_avg*0.4)
 
 result = overall_grade
 overall_grade = calculate_grade(assignment_avg, quiz_avg, test_avg)
 
-
+#letter grade function
 def letter_grade(overall_grade):
     if overall_grade >= 90:
         return "A"
@@ -37,8 +40,10 @@ def letter_grade(overall_grade):
     else:
         return "F"
 
+#dont forget to always CALL your function
 letter_grade = letter_grade(overall_grade)
 
+#next time no need to write Attendance Status (just got confused in the instructions but works nonetheless)
 def attendance_status(attendance):
     if attendance >= 95:
         return "Attendance Status: Excellent attendance"
@@ -48,6 +53,7 @@ def attendance_status(attendance):
         return "Attendance Status: Attendance warning"
     else:
         return "Attendance Status: Poor Attendance"
+# ^^ make sure you include the numbers in the interval if needed with the >= or <=
 attendance_status = attendance_status(overall_grade)
 
 def assignment_status(missing_assignments):
@@ -61,6 +67,10 @@ def assignment_status(missing_assignments):
         return "Missing Assignment Status: Critical"
 assignment_status = assignment_status(missing_assignments)
 
+#the three level-nested conditional
+#here we DONT use and/or
+#it kind of makes an arrow, always check which if matches the else
+#eligibility function check
 def check_eligibility(overall_grade, attendance, missing_assignments):
     if overall_grade >= 70:
         if attendance >= 90:
@@ -75,6 +85,8 @@ def check_eligibility(overall_grade, attendance, missing_assignments):
 
 eligibility = check_eligibility(overall_grade, attendance, missing_assignments)
 
+#high honor function
+#also another level nested conditional
 def check_high_honors(overall_grade, attendance, missing_assignments):
     if overall_grade >= 90:
         if attendance >= 95:
@@ -89,6 +101,7 @@ def check_high_honors(overall_grade, attendance, missing_assignments):
 
 high_honors = check_high_honors(overall_grade, attendance, missing_assignments)
 
+#standing check
 def check_good_standing(overall_grade, attendance):
     if overall_grade >= 70 and attendance >= 90:
         return "Good Standing: YES"
@@ -97,6 +110,7 @@ def check_good_standing(overall_grade, attendance):
 
 standing = check_good_standing(overall_grade, attendance)
 
+#support check
 def check_support(overall_grade, attendance):
     if overall_grade < 70 or attendance < 80:
         return "Additional Support: RECOMMENDED"
@@ -105,10 +119,11 @@ def check_support(overall_grade, attendance):
 
 support = check_support(overall_grade, attendance)
 
-#login check
+#login
 username = input("Enter username: ")
 pin = int(input("Enter PIN: "))
 
+#login to program check
 def program(username, pin):
     if username == "student":
         if pin == 1234:
@@ -120,6 +135,7 @@ def program(username, pin):
 
 program_status = program(username, pin)
 
+#grade level check
 def grade_level_message(grade):
     if grade == 9:
         return "Freshman year - Welcome to your freshman year!"
@@ -134,6 +150,7 @@ def grade_level_message(grade):
 
 message = grade_level_message(grade)
 
+#strongest category check with comparisons
 def strongest_category(assignment_avg, quiz_avg, test_avg):
     if assignment_avg > quiz_avg > test_avg or assignment_avg > test_avg > quiz_avg:
         return "Strongest Category: Assignments"
@@ -143,6 +160,8 @@ def strongest_category(assignment_avg, quiz_avg, test_avg):
         return "Strongest Category: Tests"
 strong = strongest_category(assignment_avg, quiz_avg, test_avg)
 
+#extra credit advanced status
+#be careful with and/ors
 def check_advanced_status(overall_grade, attendance, missing_assignments):
     if overall_grade >= 90 and attendance >= 95 or overall_grade >= 85 and missing_assignments == 0:
         return "OUTSTANDING STATUS"
